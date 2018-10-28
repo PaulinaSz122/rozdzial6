@@ -69,9 +69,9 @@ def new_board():
 def display_board(board):
     """Wyświetl planszę gry na ekranie"""
     print("\n\t", board[0], "|", board[1], "|", board[2])
-    print("--+---+--")
+    print("\t --+---+--")
     print("\t", board[3], "|", board[4], "|", board[5])
-    print("--+---+--")
+    print("\t --+---+--")
     print("\t", board[6], "|", board[7], "|", board[8])
 
 
@@ -96,7 +96,7 @@ def winner(board):
                    (2, 4, 6))
 
     for row in WAYS_TO_WIN:
-        if board[row[0]] == board[row[1]] == board[row[3]] != EMPTY:
+        if board[row[0]] == board[row[1]] == board[row[2]] != EMPTY:
             winner = board[row[0]]
             return winner
 
@@ -111,7 +111,7 @@ def human_move(board, human):
     legal = legal_moves(board)
     move = None
     while move not in legal:
-        move = ask_number("Jaki będzie twój ruch? (0 - 8):", 0, NUM_SQUARES)
+        move = ask_number("Jaki będzie twój ruch? (0 - 8): ", 0, NUM_SQUARES)
         if move not in legal:
             print("\nTo pole jest już zajęte, niemądry Człowieku. Wybierz inne.\n")
     print("Znakomicie...")
@@ -126,7 +126,7 @@ def computer_move(board, computer, human):
     # najlepsze pozycje do zajęcia według kolejności
     BEST_MOVES = (4, 0, 2, 6, 8, 1, 3, 5, 7)
 
-    print("Wybieram pole numer", end=" ")
+    print("Wybieram pole numer: ", end=" ")
 
     # Jeśli komputer może wygrać, wykonaj ten ruch
     for move in legal_moves(board):
